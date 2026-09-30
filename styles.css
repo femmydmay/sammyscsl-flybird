@@ -17,6 +17,7 @@
   --red: #ff4d5a;
 
   --white: #ffffff;
+
   --text-light: #dcecff;
   --text-muted: #9eb5ca;
 
@@ -30,15 +31,30 @@
   --radius-sm: 12px;
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+
+/* =========================================================
+   HTML
+========================================================= */
+
 html {
   scroll-behavior: smooth;
 }
+
+
+/* =========================================================
+   BODY
+========================================================= */
 
 body {
   min-height: 100vh;
@@ -68,6 +84,11 @@ body {
   overflow-x: hidden;
 }
 
+
+/* =========================================================
+   GENERAL ELEMENTS
+========================================================= */
+
 button,
 a,
 audio {
@@ -83,6 +104,7 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+
 /* =========================================================
    PAGE
 ========================================================= */
@@ -90,8 +112,10 @@ a {
 .page {
   width: 100%;
   min-height: 100vh;
+
   padding: 0 20px;
 }
+
 
 /* =========================================================
    HERO
@@ -99,27 +123,40 @@ a {
 
 .hero {
   width: min(1100px, 100%);
+
   margin: 0 auto;
-  padding: 55px 20px 30px;
+
+  padding:
+    55px 20px 30px;
+
   text-align: center;
 }
 
 .hero-badge {
   display: inline-flex;
+
   align-items: center;
+
   gap: 8px;
 
-  padding: 8px 14px;
+  padding:
+    8px 14px;
 
-  border: 1px solid rgba(87, 185, 255, 0.25);
+  border:
+    1px solid rgba(87, 185, 255, 0.25);
+
   border-radius: 999px;
 
-  background: rgba(30, 144, 255, 0.1);
+  background:
+    rgba(30, 144, 255, 0.1);
 
-  color: var(--blue-light);
+  color:
+    var(--blue-light);
 
   font-size: 12px;
+
   font-weight: 800;
+
   letter-spacing: 1.5px;
 }
 
@@ -129,41 +166,53 @@ a {
 
   border-radius: 50%;
 
-  background: var(--green);
+  background:
+    var(--green);
 
-  box-shadow: 0 0 12px var(--green);
+  box-shadow:
+    0 0 12px var(--green);
 }
 
 .hero h1 {
   margin-top: 18px;
 
-  font-size: clamp(2.1rem, 5vw, 4rem);
+  font-size:
+    clamp(2.1rem, 5vw, 4rem);
+
   line-height: 1.05;
+
   font-weight: 900;
+
   letter-spacing: -1.5px;
 
-  background: linear-gradient(
-    135deg,
-    #ffffff,
-    #8bd2ff
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #8bd2ff
+    );
 
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 }
 
 .hero-text {
   max-width: 650px;
 
-  margin: 16px auto 0;
+  margin:
+    16px auto 0;
 
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
-  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-size:
+    clamp(0.95rem, 2vw, 1.15rem);
 
   line-height: 1.7;
 }
+
 
 /* =========================================================
    INFO CARDS
@@ -172,13 +221,15 @@ a {
 .game-info {
   display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns:
+    repeat(3, 1fr);
 
   gap: 12px;
 
   width: min(720px, 100%);
 
-  margin: 28px auto 0;
+  margin:
+    28px auto 0;
 }
 
 .info-card {
@@ -192,13 +243,17 @@ a {
 
   text-align: left;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: var(--radius-sm);
+  border-radius:
+    var(--radius-sm);
 
-  background: rgba(255, 255, 255, 0.045);
+  background:
+    rgba(255, 255, 255, 0.045);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter:
+    blur(12px);
 }
 
 .info-icon {
@@ -213,7 +268,8 @@ a {
 
   border-radius: 10px;
 
-  background: rgba(30, 144, 255, 0.15);
+  background:
+    rgba(30, 144, 255, 0.15);
 
   font-size: 18px;
 }
@@ -227,16 +283,19 @@ a {
 }
 
 .info-card strong {
-  color: var(--white);
+  color:
+    var(--white);
 
   font-size: 13px;
 }
 
 .info-card span {
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 11px;
 }
+
 
 /* =========================================================
    GAME SECTION
@@ -244,18 +303,24 @@ a {
 
 .game-section {
   width: 100%;
-  padding: 10px 0 50px;
+
+  padding:
+    10px 0 50px;
 }
 
 .game-card {
   width: min(1050px, 100%);
+
   margin: 0 auto;
 
-  padding: clamp(14px, 3vw, 28px);
+  padding:
+    clamp(14px, 3vw, 28px);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: var(--radius-lg);
+  border-radius:
+    var(--radius-lg);
 
   background:
     linear-gradient(
@@ -264,10 +329,13 @@ a {
       rgba(5, 22, 38, 0.92)
     );
 
-  box-shadow: var(--shadow);
+  box-shadow:
+    var(--shadow);
 
-  backdrop-filter: blur(20px);
+  backdrop-filter:
+    blur(20px);
 }
+
 
 /* =========================================================
    GAME HEADER
@@ -286,9 +354,11 @@ a {
 }
 
 .game-label {
-  color: var(--blue-light);
+  color:
+    var(--blue-light);
 
   font-size: 10px;
+
   font-weight: 900;
 
   letter-spacing: 2px;
@@ -297,7 +367,8 @@ a {
 .game-header h2 {
   margin-top: 4px;
 
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-size:
+    clamp(1.2rem, 3vw, 1.6rem);
 }
 
 .live-indicator {
@@ -307,15 +378,19 @@ a {
 
   gap: 7px;
 
-  padding: 7px 11px;
+  padding:
+    7px 11px;
 
-  border: 1px solid rgba(57, 217, 138, 0.2);
+  border:
+    1px solid rgba(57, 217, 138, 0.2);
 
   border-radius: 999px;
 
-  color: var(--green);
+  color:
+    var(--green);
 
-  background: rgba(57, 217, 138, 0.08);
+  background:
+    rgba(57, 217, 138, 0.08);
 
   font-size: 10px;
 
@@ -330,11 +405,14 @@ a {
 
   border-radius: 50%;
 
-  background: var(--green);
+  background:
+    var(--green);
 
-  box-shadow: 0 0 10px var(--green);
+  box-shadow:
+    0 0 10px var(--green);
 
-  animation: pulse 1.5s infinite;
+  animation:
+    pulse 1.5s infinite;
 }
 
 @keyframes pulse {
@@ -351,6 +429,7 @@ a {
   }
 }
 
+
 /* =========================================================
    GAME WRAPPER
 ========================================================= */
@@ -362,21 +441,29 @@ a {
 
   overflow: hidden;
 
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  border:
+    2px solid rgba(255, 255, 255, 0.15);
 
   border-radius: 18px;
 
-  background: #102b42;
+  background:
+    #102b42;
 
   box-shadow:
     inset 0 0 40px rgba(0, 0, 0, 0.25),
     0 10px 35px rgba(0, 0, 0, 0.25);
 
   /*
-    Keeps the original 800 x 450 game ratio.
+    Keeps the original
+    800 x 450 game ratio.
   */
   aspect-ratio: 16 / 9;
 }
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
 
 #gameCanvas {
   display: block;
@@ -390,6 +477,7 @@ a {
 
   user-select: none;
 }
+
 
 /* =========================================================
    GAME HUD
@@ -420,21 +508,26 @@ a {
 
   min-width: 75px;
 
-  padding: 8px 12px;
+  padding:
+    8px 12px;
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border:
+    1px solid rgba(255, 255, 255, 0.18);
 
   border-radius: 10px;
 
-  background: rgba(0, 0, 0, 0.35);
+  background:
+    rgba(0, 0, 0, 0.35);
 
-  backdrop-filter: blur(8px);
+  backdrop-filter:
+    blur(8px);
 
   text-align: center;
 }
 
 .hud-label {
-  color: rgba(255, 255, 255, 0.7);
+  color:
+    rgba(255, 255, 255, 0.7);
 
   font-size: 8px;
 
@@ -450,8 +543,10 @@ a {
 
   font-weight: 900;
 
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5);
 }
+
 
 /* =========================================================
    OVERLAYS
@@ -468,15 +563,22 @@ a {
 
   place-items: center;
 
-  padding: 20px;
+  /*
+    Smaller default padding.
+  */
+  padding: 12px;
 
-  background: rgba(2, 12, 22, 0.55);
+  background:
+    rgba(2, 12, 22, 0.55);
 
-  backdrop-filter: blur(5px);
+  backdrop-filter:
+    blur(5px);
 
   opacity: 1;
 
   visibility: visible;
+
+  pointer-events: auto;
 
   transition:
     opacity 0.25s ease,
@@ -491,12 +593,22 @@ a {
   pointer-events: none;
 }
 
+
+/* =========================================================
+   OVERLAY CARD
+========================================================= */
+
 .overlay-card {
-  width: min(400px, 100%);
+  width:
+    min(400px, 100%);
 
-  padding: clamp(22px, 5vw, 35px);
+  max-width: 100%;
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding:
+    clamp(22px, 5vw, 35px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.18);
 
   border-radius: 22px;
 
@@ -511,7 +623,34 @@ a {
     0 25px 70px rgba(0, 0, 0, 0.45);
 
   text-align: center;
+
+  pointer-events: auto;
 }
+
+
+/* =========================================================
+   GAME OVER CARD
+========================================================= */
+
+/*
+   This is intentionally separate from
+   .overlay-card so we can make the
+   Flight Ended modal smaller on
+   tablets and phones.
+*/
+
+.game-over-card {
+  width:
+    min(350px, 100%);
+
+  padding:
+    24px 26px;
+}
+
+
+/* =========================================================
+   ICONS
+========================================================= */
 
 .bird-icon,
 .game-over-icon {
@@ -522,25 +661,36 @@ a {
   width: 65px;
   height: 65px;
 
-  margin: 0 auto 15px;
+  margin:
+    0 auto 15px;
 
   border-radius: 50%;
 
-  background: rgba(30, 144, 255, 0.13);
+  background:
+    rgba(30, 144, 255, 0.13);
 
-  border: 1px solid rgba(87, 185, 255, 0.2);
+  border:
+    1px solid rgba(87, 185, 255, 0.2);
 
   font-size: 32px;
 }
 
 .game-over-icon {
-  background: rgba(255, 77, 90, 0.1);
+  background:
+    rgba(255, 77, 90, 0.1);
 
-  border-color: rgba(255, 77, 90, 0.2);
+  border-color:
+    rgba(255, 77, 90, 0.2);
 }
 
+
+/* =========================================================
+   OVERLAY TEXT
+========================================================= */
+
 .overlay-small {
-  color: var(--blue-light);
+  color:
+    var(--blue-light);
 
   font-size: 10px;
 
@@ -552,22 +702,26 @@ a {
 .overlay-card h3 {
   margin-top: 6px;
 
-  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  font-size:
+    clamp(1.7rem, 5vw, 2.3rem);
 
   font-weight: 900;
 }
 
 .overlay-card p {
-  margin: 10px auto 20px;
+  margin:
+    10px auto 20px;
 
   max-width: 310px;
 
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 14px;
 
   line-height: 1.6;
 }
+
 
 /* =========================================================
    BUTTONS
@@ -584,7 +738,8 @@ a {
 
   min-height: 48px;
 
-  padding: 0 24px;
+  padding:
+    0 24px;
 
   border-radius: 12px;
 
@@ -594,57 +749,102 @@ a {
 
   cursor: pointer;
 
+  touch-action: manipulation;
+
+  -webkit-tap-highlight-color: transparent;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease;
 }
 
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
 .primary-button {
   color: white;
 
-  background: linear-gradient(
-    135deg,
-    #1e90ff,
-    #0877dc
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #1e90ff,
+      #0877dc
+    );
 
   box-shadow:
-    0 8px 22px rgba(30, 144, 255, 0.3);
+    0 8px 22px
+    rgba(30, 144, 255, 0.3);
 }
 
 .primary-button:hover {
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
 
   box-shadow:
-    0 12px 30px rgba(30, 144, 255, 0.42);
+    0 12px 30px
+    rgba(30, 144, 255, 0.42);
 }
 
 .primary-button:active {
-  transform: translateY(0);
+  transform:
+    translateY(0);
 }
 
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
 .secondary-button {
-  color: var(--text-light);
+  color:
+    var(--text-light);
 
-  background: rgba(255, 255, 255, 0.07);
+  background:
+    rgba(255, 255, 255, 0.07);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 }
 
 .secondary-button:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background:
+    rgba(255, 255, 255, 0.12);
 }
+
+
+/* =========================================================
+   MODAL BUTTONS
+========================================================= */
 
 .modal-buttons {
   display: flex;
+
+  align-items: center;
 
   justify-content: center;
 
   gap: 10px;
 
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+
+  width: 100%;
 }
+
+.modal-buttons button {
+  flex: 1;
+
+  min-width: 0;
+
+  touch-action: manipulation;
+}
+
 
 /* =========================================================
    FINAL SCORE
@@ -661,17 +861,21 @@ a {
 
   gap: 2px;
 
-  margin: 18px 0;
+  margin:
+    18px 0;
 
-  padding: 14px;
+  padding:
+    14px;
 
   border-radius: 12px;
 
-  background: rgba(255, 255, 255, 0.05);
+  background:
+    rgba(255, 255, 255, 0.05);
 }
 
 .final-score span {
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 9px;
 
@@ -683,8 +887,10 @@ a {
 .final-score strong {
   font-size: 36px;
 
-  color: var(--yellow);
+  color:
+    var(--yellow);
 }
+
 
 /* =========================================================
    GAME TIP
@@ -699,13 +905,16 @@ a {
 
   margin-top: 15px;
 
-  padding: 12px 14px;
+  padding:
+    12px 14px;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
 
   border-radius: 10px;
 
-  background: rgba(255, 255, 255, 0.035);
+  background:
+    rgba(255, 255, 255, 0.035);
 }
 
 .game-tip span {
@@ -713,12 +922,14 @@ a {
 }
 
 .game-tip p {
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 12px;
 
   line-height: 1.5;
 }
+
 
 /* =========================================================
    MOBILE CONTROL
@@ -747,9 +958,11 @@ a {
 
   color: white;
 
-  background: rgba(30, 144, 255, 0.14);
+  background:
+    rgba(30, 144, 255, 0.14);
 
-  border: 1px solid rgba(87, 185, 255, 0.3);
+  border:
+    1px solid rgba(87, 185, 255, 0.3);
 
   font-size: 12px;
 
@@ -767,10 +980,13 @@ a {
 }
 
 #flap-button:active {
-  transform: scale(0.98);
+  transform:
+    scale(0.98);
 
-  background: rgba(30, 144, 255, 0.25);
+  background:
+    rgba(30, 144, 255, 0.25);
 }
+
 
 /* =========================================================
    SUPPORT
@@ -779,11 +995,13 @@ a {
 .support-section {
   width: 100%;
 
-  padding: 0 0 50px;
+  padding:
+    0 0 50px;
 }
 
 .support-card {
-  width: min(900px, 100%);
+  width:
+    min(900px, 100%);
 
   margin: 0 auto;
 
@@ -793,11 +1011,14 @@ a {
 
   gap: 25px;
 
-  padding: clamp(20px, 4vw, 35px);
+  padding:
+    clamp(20px, 4vw, 35px);
 
-  border: 1px solid rgba(57, 217, 138, 0.18);
+  border:
+    1px solid rgba(57, 217, 138, 0.18);
 
-  border-radius: var(--radius-lg);
+  border-radius:
+    var(--radius-lg);
 
   background:
     linear-gradient(
@@ -819,7 +1040,8 @@ a {
 
   border-radius: 18px;
 
-  background: rgba(57, 217, 138, 0.1);
+  background:
+    rgba(57, 217, 138, 0.1);
 
   font-size: 30px;
 }
@@ -829,7 +1051,8 @@ a {
 }
 
 .section-label {
-  color: var(--green);
+  color:
+    var(--green);
 
   font-size: 10px;
 
@@ -841,7 +1064,8 @@ a {
 .support-content h2 {
   margin-top: 5px;
 
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-size:
+    clamp(1.3rem, 3vw, 1.8rem);
 }
 
 .support-content p {
@@ -849,7 +1073,8 @@ a {
 
   margin-top: 8px;
 
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 14px;
 
@@ -863,29 +1088,36 @@ a {
 
   text-decoration: none;
 
-  background: var(--green);
+  background:
+    var(--green);
 
   box-shadow:
-    0 8px 20px rgba(57, 217, 138, 0.2);
+    0 8px 20px
+    rgba(57, 217, 138, 0.2);
 }
 
 .support-button:hover {
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
 
   box-shadow:
-    0 12px 25px rgba(57, 217, 138, 0.3);
+    0 12px 25px
+    rgba(57, 217, 138, 0.3);
 }
+
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
 .footer {
-  width: min(900px, 100%);
+  width:
+    min(900px, 100%);
 
   margin: 0 auto;
 
-  padding: 0 0 40px;
+  padding:
+    0 0 40px;
 
   text-align: center;
 }
@@ -899,13 +1131,16 @@ a {
 
   gap: 20px;
 
-  padding: 15px 18px;
+  padding:
+    15px 18px;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius: 14px;
 
-  background: rgba(255, 255, 255, 0.045);
+  background:
+    rgba(255, 255, 255, 0.045);
 }
 
 .audio-heading {
@@ -928,7 +1163,8 @@ a {
 
   border-radius: 10px;
 
-  background: rgba(255, 209, 102, 0.1);
+  background:
+    rgba(255, 209, 102, 0.1);
 
   font-size: 18px;
 }
@@ -946,13 +1182,15 @@ a {
 }
 
 .audio-heading span {
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 10px;
 }
 
 audio {
-  width: min(280px, 100%);
+  width:
+    min(280px, 100%);
 
   height: 38px;
 }
@@ -962,14 +1200,17 @@ audio {
 
   height: 1px;
 
-  margin: 25px 0 20px;
+  margin:
+    25px 0 20px;
 
-  background: var(--border);
+  background:
+    var(--border);
 }
 
 .built,
 .dedication {
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 12px;
 
@@ -983,20 +1224,24 @@ audio {
 .dedication {
   margin-top: 3px;
 
-  color: #8fa7bb;
+  color:
+    #8fa7bb;
 }
+
 
 /* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 800px) {
+
   .hero {
     padding-top: 40px;
   }
 
   .game-info {
     grid-template-columns: 1fr;
+
     max-width: 420px;
   }
 
@@ -1007,23 +1252,75 @@ audio {
   .game-card {
     padding: 15px;
   }
+
+
+  /*
+    Slightly reduce Game Over modal
+    on tablets.
+  */
+
+  .game-over-card {
+    width: min(320px, 90%);
+
+    padding:
+      20px 22px;
+  }
+
+  .game-over-card .game-over-icon {
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 10px;
+
+    font-size: 27px;
+  }
+
+  .game-over-card h3 {
+    font-size: 1.7rem;
+  }
+
+  .game-over-card .final-score {
+    margin:
+      12px 0;
+
+    padding: 10px;
+  }
+
+  .game-over-card .final-score strong {
+    font-size: 30px;
+  }
+
+  .game-over-card .primary-button,
+  .game-over-card .secondary-button {
+    min-height: 44px;
+
+    padding:
+      0 16px;
+
+    font-size: 12px;
+  }
 }
+
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
+
   .page {
-    padding: 0 10px;
+    padding:
+      0 10px;
   }
 
   .hero {
-    padding: 30px 8px 20px;
+    padding:
+      30px 8px 20px;
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 10vw, 2.8rem);
+    font-size:
+      clamp(2rem, 10vw, 2.8rem);
 
     letter-spacing: -1px;
   }
@@ -1059,7 +1356,8 @@ audio {
   }
 
   .live-indicator {
-    padding: 6px 8px;
+    padding:
+      6px 8px;
 
     font-size: 8px;
   }
@@ -1070,22 +1368,156 @@ audio {
 
   .game-hud {
     top: 8px;
+
     left: 8px;
+
     right: 8px;
   }
 
   .hud-item {
     min-width: 55px;
 
-    padding: 5px 8px;
+    padding:
+      5px 8px;
   }
 
   .hud-score {
     font-size: 17px;
   }
 
+
+  /* =======================================================
+     GAME OVER MODAL - MOBILE
+  ======================================================= */
+
+  .game-overlay {
+    padding: 6px;
+  }
+
+  .game-over-card {
+
+    /*
+      Much smaller width.
+    */
+
+    width: 90%;
+
+    max-width: 300px;
+
+    /*
+      Compact vertical spacing.
+    */
+
+    padding:
+      12px 14px;
+
+    border-radius: 16px;
+  }
+
+
+  /*
+    Smaller explosion icon.
+  */
+
+  .game-over-card .game-over-icon {
+    width: 42px;
+    height: 42px;
+
+    margin:
+      0 auto 6px;
+
+    font-size: 21px;
+  }
+
+
+  /*
+    Smaller FLIGHT ENDED text.
+  */
+
+  .game-over-card .overlay-small {
+    font-size: 7px;
+
+    letter-spacing: 1.2px;
+  }
+
+
+  /*
+    Smaller Game Over heading.
+  */
+
+  .game-over-card h3 {
+    margin-top: 3px;
+
+    font-size: 1.3rem;
+  }
+
+
+  /*
+    Smaller final score box.
+  */
+
+  .game-over-card .final-score {
+    margin:
+      7px 0;
+
+    padding:
+      6px;
+  }
+
+  .game-over-card .final-score span {
+    font-size: 7px;
+
+    letter-spacing: 1px;
+  }
+
+  .game-over-card .final-score strong {
+    font-size: 24px;
+  }
+
+
+  /*
+    Play Again + Close
+    remain side-by-side.
+  */
+
+  .game-over-card .modal-buttons {
+    gap: 6px;
+
+    flex-wrap: nowrap;
+  }
+
+
+  /*
+    Smaller buttons.
+  */
+
+  .game-over-card .primary-button,
+  .game-over-card .secondary-button {
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 38px;
+
+    padding:
+      0 8px;
+
+    border-radius: 9px;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+  }
+
+
+  /* =======================================================
+     MOBILE CONTROL
+  ======================================================= */
+
   .mobile-control {
     display: block;
+
+    margin-top: 12px;
   }
 
   .game-tip {
@@ -1095,6 +1527,11 @@ audio {
   .game-tip p {
     font-size: 11px;
   }
+
+
+  /* =======================================================
+     SUPPORT
+  ======================================================= */
 
   .support-card {
     flex-direction: column;
@@ -1113,6 +1550,11 @@ audio {
     font-size: 25px;
   }
 
+
+  /* =======================================================
+     AUDIO
+  ======================================================= */
+
   .audio-card {
     flex-direction: column;
 
@@ -1130,11 +1572,13 @@ audio {
   }
 }
 
+
 /* =========================================================
    VERY SMALL PHONES
 ========================================================= */
 
 @media (max-width: 380px) {
+
   .hero {
     padding-top: 22px;
   }
@@ -1142,7 +1586,8 @@ audio {
   .hero-badge {
     font-size: 9px;
 
-    padding: 7px 10px;
+    padding:
+      7px 10px;
   }
 
   .game-card {
@@ -1173,23 +1618,119 @@ audio {
     font-size: 15px;
   }
 
-  .overlay-card {
-    padding: 20px 15px;
+
+  /* =======================================================
+     VERY SMALL GAME OVER MODAL
+  ======================================================= */
+
+  .game-over-card {
+
+    width: 88%;
+
+    max-width: 270px;
+
+    padding:
+      9px 10px;
+
+    border-radius: 14px;
   }
 
-  .overlay-card h3 {
-    font-size: 1.6rem;
+
+  .game-over-card .game-over-icon {
+    width: 36px;
+    height: 36px;
+
+    margin-bottom: 4px;
+
+    font-size: 18px;
   }
 
-  .overlay-card p {
-    font-size: 12px;
+
+  .game-over-card .overlay-small {
+    font-size: 6px;
+
+    letter-spacing: 1px;
   }
 
-  .primary-button,
-  .secondary-button {
-    width: 100%;
+
+  .game-over-card h3 {
+    font-size: 1.15rem;
+
+    margin-top: 2px;
+  }
+
+
+  .game-over-card .final-score {
+    margin:
+      5px 0;
+
+    padding: 4px;
+  }
+
+  .game-over-card .final-score span {
+    font-size: 6px;
+  }
+
+  .game-over-card .final-score strong {
+    font-size: 21px;
+  }
+
+
+  /*
+    Keep both buttons visible.
+  */
+
+  .game-over-card .modal-buttons {
+    gap: 4px;
+  }
+
+  .game-over-card .primary-button,
+  .game-over-card .secondary-button {
+
+    min-height: 34px;
+
+    padding:
+      0 6px;
+
+    border-radius: 8px;
+
+    font-size: 9px;
+  }
+
+
+  /*
+    Keep the Start Game modal
+    separate from Game Over sizing.
+  */
+
+  .overlay-card:not(.game-over-card) {
+    padding:
+      16px 12px;
+  }
+
+  .overlay-card:not(.game-over-card) h3 {
+    font-size: 1.4rem;
+  }
+
+  .overlay-card:not(.game-over-card) p {
+    font-size: 11px;
+
+    margin:
+      8px auto 14px;
+  }
+
+
+  /*
+    Do NOT make the game-over buttons
+    100% width.
+  */
+
+  .game-over-card .primary-button,
+  .game-over-card .secondary-button {
+    width: auto;
   }
 }
+
 
 /* =========================================================
    ACCESSIBILITY
@@ -1198,14 +1739,19 @@ audio {
 button:focus-visible,
 a:focus-visible,
 canvas:focus-visible {
-  outline: 3px solid var(--yellow);
+  outline:
+    3px solid var(--yellow);
 
   outline-offset: 3px;
 }
 
-/* Reduce animations for users who request it */
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   html {
     scroll-behavior: auto;
   }
@@ -1213,10 +1759,13 @@ canvas:focus-visible {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration:
+      0.01ms !important;
 
-    animation-iteration-count: 1 !important;
+    animation-iteration-count:
+      1 !important;
 
-    transition-duration: 0.01ms !important;
+    transition-duration:
+      0.01ms !important;
   }
 }

@@ -78,6 +78,14 @@ let gameOver = false;
 
 let pipeIntervalId = null;
 let animationId = null;
+let firstPipeTimeoutId = null;
+
+
+/*
+  Prevent duplicate mobile button events.
+*/
+
+let lastButtonTouchTime = 0;
 
 
 /* =========================================================
@@ -97,8 +105,16 @@ const bird = {
 
   jump: -9.5,
 
+
+  /* -------------------------------------------------------
+     DRAW BIRD
+  ------------------------------------------------------- */
+
   draw() {
-    if (!birdImg.complete) {
+    if (
+      !birdImg.complete ||
+      birdImg.naturalWidth === 0
+    ) {
       return;
     }
 
@@ -113,6 +129,11 @@ const bird = {
     );
   },
 
+
+  /* -------------------------------------------------------
+     FLAP
+  ------------------------------------------------------- */
+
   flap() {
     if (!gameRunning) {
       return;
@@ -123,13 +144,19 @@ const bird = {
     playFlapSound();
   },
 
+
+  /* -------------------------------------------------------
+     UPDATE BIRD
+  ------------------------------------------------------- */
+
   update() {
     this.velocity += this.gravity;
 
     this.y += this.velocity;
 
+
     /*
-      Keep bird inside the top boundary.
+      Top boundary
     */
 
     if (this.y < this.radius) {
@@ -138,12 +165,17 @@ const bird = {
       this.velocity = 0;
     }
 
+
     /*
-      Bottom boundary.
+      Bottom boundary
     */
 
-    if (this.y > GAME_HEIGHT - this.radius) {
-      this.y = GAME_HEIGHT - this.radius;
+    if (
+      this.y >
+      GAME_HEIGHT - this.radius
+    ) {
+      this.y =
+        GAME_HEIGHT - this.radius;
 
       this.velocity = 0;
     }
@@ -158,28 +190,43 @@ const bird = {
 function Pipe() {
   this.x = GAME_WIDTH;
 
+
   /*
-    Leave enough room above and below
-    the pipe opening.
+    Pipe opening position
   */
 
   const minimumGapPosition = 65;
 
   const maximumGapPosition =
-    GAME_HEIGHT - pipeGap - 65;
+    GAME_HEIGHT -
+    pipeGap -
+    65;
+
 
   this.gap =
     Math.random() *
-      (maximumGapPosition - minimumGapPosition) +
+      (
+        maximumGapPosition -
+        minimumGapPosition
+      ) +
     minimumGapPosition;
+
 
   this.passed = false;
 
 
+  /* -------------------------------------------------------
+     DRAW PIPE
+  ------------------------------------------------------- */
+
   this.draw = function () {
-    if (!pipeImg.complete) {
+    if (
+      !pipeImg.complete ||
+      pipeImg.naturalWidth === 0
+    ) {
       return;
     }
+
 
     /*
       Top pipe
@@ -209,17 +256,25 @@ function Pipe() {
 
       pipeWidth,
 
-      GAME_HEIGHT - (this.gap + pipeGap)
+      GAME_HEIGHT -
+        (
+          this.gap +
+          pipeGap
+        )
     );
   };
 
+
+  /* -------------------------------------------------------
+     UPDATE PIPE
+  ------------------------------------------------------- */
 
   this.update = function () {
     this.x -= pipeSpeed;
 
 
     /*
-      Collision detection
+      Bird collision area
     */
 
     const birdRight =
@@ -239,23 +294,37 @@ function Pipe() {
       this.x + pipeWidth;
 
 
+    /*
+      Horizontal collision
+    */
+
     const horizontalCollision =
       birdRight > this.x &&
       birdLeft < pipeRight;
 
 
+    /*
+      Vertical collision
+    */
+
     const topPipeCollision =
       birdTop < this.gap;
-
 
     const bottomPipeCollision =
       birdBottom >
       this.gap + pipeGap;
 
 
+    /*
+      End game
+    */
+
     if (
       horizontalCollision &&
-      (topPipeCollision || bottomPipeCollision)
+      (
+        topPipeCollision ||
+        bottomPipeCollision
+      )
     ) {
       endGame();
 
@@ -286,16 +355,25 @@ function Pipe() {
 ========================================================= */
 
 function updateScore() {
-  scoreDisplay.textContent = score;
+  if (scoreDisplay) {
+    scoreDisplay.textContent =
+      String(score);
+  }
+
 
   if (score > bestScore) {
     bestScore = score;
 
-    bestScoreDisplay.textContent = bestScore;
+
+    if (bestScoreDisplay) {
+      bestScoreDisplay.textContent =
+        String(bestScore);
+    }
+
 
     localStorage.setItem(
       "flyingBirdBestScore",
-      bestScore
+      String(bestScore)
     );
   }
 }
@@ -310,29 +388,30 @@ function playFlapSound() {
     return;
   }
 
-  /*
-    The original code tried to call .play()
-    on the <source> element.
-
-    Now the <audio> element itself has the ID,
-    so this works correctly.
-  */
 
   try {
     flapSound.currentTime = 0;
 
-    const playPromise = flapSound.play();
+    const playPromise =
+      flapSound.play();
 
-    if (playPromise !== undefined) {
+
+    if (
+      playPromise &&
+      typeof playPromise.catch ===
+        "function"
+    ) {
       playPromise.catch(() => {
         /*
-          Browsers can block audio until the user
-          interacts with the page.
+          Browser may block audio.
         */
       });
     }
+
   } catch (error) {
-    console.log("Audio playback unavailable.");
+    console.log(
+      "Audio playback unavailable."
+    );
   }
 }
 
@@ -346,7 +425,9 @@ function createPipe() {
     return;
   }
 
-  pipes.push(new Pipe());
+  pipes.push(
+    new Pipe()
+  );
 }
 
 
@@ -355,11 +436,16 @@ function createPipe() {
 ========================================================= */
 
 function draw() {
+
   /*
     Background
   */
 
-  if (backgroundImg.complete) {
+  if (
+    backgroundImg.complete &&
+    backgroundImg.naturalWidth > 0
+  ) {
+
     ctx.drawImage(
       backgroundImg,
 
@@ -369,12 +455,16 @@ function draw() {
       GAME_WIDTH,
       GAME_HEIGHT
     );
+
   } else {
-    ctx.fillStyle = "#66b7e8";
+
+    ctx.fillStyle =
+      "#66b7e8";
 
     ctx.fillRect(
       0,
       0,
+
       GAME_WIDTH,
       GAME_HEIGHT
     );
@@ -385,9 +475,11 @@ function draw() {
     Pipes
   */
 
-  pipes.forEach((pipe) => {
-    pipe.draw();
-  });
+  pipes.forEach(
+    (pipe) => {
+      pipe.draw();
+    }
+  );
 
 
   /*
@@ -403,22 +495,37 @@ function draw() {
 ========================================================= */
 
 function update() {
-  bird.update();
+  if (!gameRunning) {
+    return;
+  }
 
-  pipes.forEach((pipe) => {
-    pipe.update();
-  });
+
+  bird.update();
 
 
   /*
-    Remove pipes that have left the screen.
+    Update pipes.
+  */
 
-    This prevents the pipes array from growing forever.
+  for (const pipe of pipes) {
+
+    if (!gameRunning) {
+      break;
+    }
+
+    pipe.update();
+  }
+
+
+  /*
+    Remove pipes that left screen.
   */
 
   while (
     pipes.length > 0 &&
-    pipes[0].x + pipeWidth < 0
+    pipes[0].x +
+      pipeWidth <
+      0
   ) {
     pipes.shift();
   }
@@ -430,16 +537,176 @@ function update() {
 ========================================================= */
 
 function gameLoop() {
+
   if (!gameRunning) {
+    animationId = null;
+
     return;
   }
+
 
   update();
 
   draw();
 
-  animationId =
-    requestAnimationFrame(gameLoop);
+
+  if (gameRunning) {
+
+    animationId =
+      window.requestAnimationFrame(
+        gameLoop
+      );
+  }
+}
+
+
+/* =========================================================
+   OVERLAY FUNCTIONS
+========================================================= */
+
+function showStartOverlay() {
+
+  /*
+    Hide game over.
+  */
+
+  gameOverModal.classList.add(
+    "hidden"
+  );
+
+
+  /*
+    Show start overlay.
+  */
+
+  startOverlay.classList.remove(
+    "hidden"
+  );
+
+
+  /*
+    Interaction states.
+  */
+
+  startOverlay.style.pointerEvents =
+    "auto";
+
+  gameOverModal.style.pointerEvents =
+    "none";
+}
+
+
+function showGameOverOverlay() {
+
+  /*
+    Hide start overlay.
+  */
+
+  startOverlay.classList.add(
+    "hidden"
+  );
+
+
+  /*
+    Show game over.
+  */
+
+  gameOverModal.classList.remove(
+    "hidden"
+  );
+
+
+  /*
+    Interaction states.
+  */
+
+  startOverlay.style.pointerEvents =
+    "none";
+
+  gameOverModal.style.pointerEvents =
+    "auto";
+}
+
+
+function hideAllOverlays() {
+
+  startOverlay.classList.add(
+    "hidden"
+  );
+
+  gameOverModal.classList.add(
+    "hidden"
+  );
+
+
+  startOverlay.style.pointerEvents =
+    "none";
+
+  gameOverModal.style.pointerEvents =
+    "none";
+}
+
+
+/* =========================================================
+   RESET GAME STATE
+========================================================= */
+
+function resetGameState() {
+
+  /*
+    Stop timers.
+  */
+
+  stopGameLoop();
+
+
+  /*
+    Clear pipes.
+  */
+
+  pipes.length = 0;
+
+
+  /*
+    Reset score.
+  */
+
+  score = 0;
+
+  updateScore();
+
+
+  /*
+    Reset bird.
+  */
+
+  bird.x = 120;
+
+  bird.y =
+    GAME_HEIGHT / 2;
+
+  bird.velocity = 0;
+
+
+  /*
+    Reset flags.
+  */
+
+  gameRunning = false;
+
+  gameStarted = false;
+
+  gameOver = false;
+
+
+  /*
+    Reset final score.
+  */
+
+  if (finalScore) {
+    finalScore.textContent =
+      "0";
+  }
 }
 
 
@@ -448,19 +715,45 @@ function gameLoop() {
 ========================================================= */
 
 function startGame() {
+
+  /*
+    Stop previous game.
+  */
+
   stopGameLoop();
 
+
+  /*
+    Clear old pipes.
+  */
+
   pipes.length = 0;
+
+
+  /*
+    Reset score.
+  */
 
   score = 0;
 
   updateScore();
 
+
+  /*
+    Reset bird.
+  */
+
   bird.x = 120;
 
-  bird.y = GAME_HEIGHT / 2;
+  bird.y =
+    GAME_HEIGHT / 2;
 
   bird.velocity = 0;
+
+
+  /*
+    Reset state.
+  */
 
   gameOver = false;
 
@@ -468,36 +761,53 @@ function startGame() {
 
   gameRunning = true;
 
-  startOverlay.classList.add("hidden");
 
-  gameOverModal.classList.add("hidden");
+  /*
+    Hide overlays.
+  */
+
+  hideAllOverlays();
 
 
   /*
-    Start generating pipes.
+    Pipe interval.
   */
 
   pipeIntervalId =
-    setInterval(
+    window.setInterval(
       createPipe,
       pipeInterval
     );
 
 
   /*
-    Create the first pipe sooner,
-    so the player doesn't wait too long.
+    First pipe.
   */
 
-  setTimeout(() => {
-    if (gameRunning) {
-      createPipe();
-    }
-  }, 700);
+  firstPipeTimeoutId =
+    window.setTimeout(
+      () => {
 
+        if (gameRunning) {
+          createPipe();
+        }
+
+        firstPipeTimeoutId =
+          null;
+
+      },
+      700
+    );
+
+
+  /*
+    Start animation.
+  */
 
   animationId =
-    requestAnimationFrame(gameLoop);
+    window.requestAnimationFrame(
+      gameLoop
+    );
 }
 
 
@@ -506,14 +816,50 @@ function startGame() {
 ========================================================= */
 
 function stopGameLoop() {
-  if (pipeIntervalId !== null) {
-    clearInterval(pipeIntervalId);
+
+  /*
+    Stop pipe interval.
+  */
+
+  if (
+    pipeIntervalId !== null
+  ) {
+
+    window.clearInterval(
+      pipeIntervalId
+    );
 
     pipeIntervalId = null;
   }
 
-  if (animationId !== null) {
-    cancelAnimationFrame(animationId);
+
+  /*
+    Stop first pipe timeout.
+  */
+
+  if (
+    firstPipeTimeoutId !== null
+  ) {
+
+    window.clearTimeout(
+      firstPipeTimeoutId
+    );
+
+    firstPipeTimeoutId = null;
+  }
+
+
+  /*
+    Stop animation.
+  */
+
+  if (
+    animationId !== null
+  ) {
+
+    window.cancelAnimationFrame(
+      animationId
+    );
 
     animationId = null;
   }
@@ -525,48 +871,70 @@ function stopGameLoop() {
 ========================================================= */
 
 function endGame() {
+
+  /*
+    Prevent duplicate game over.
+  */
+
   if (gameOver) {
     return;
   }
+
+
+  /*
+    Change state first.
+  */
 
   gameOver = true;
 
   gameRunning = false;
 
+
+  /*
+    Stop timers.
+  */
+
   stopGameLoop();
 
 
   /*
-    Update final score.
+    Final score.
   */
 
-  finalScore.textContent = score;
+  if (finalScore) {
+
+    finalScore.textContent =
+      String(score);
+  }
 
 
   /*
-    Update best score.
+    Best score.
   */
 
   if (score > bestScore) {
+
     bestScore = score;
 
     localStorage.setItem(
       "flyingBirdBestScore",
-      bestScore
+      String(bestScore)
     );
   }
 
-  bestScoreDisplay.textContent =
-    bestScore;
+
+  if (bestScoreDisplay) {
+
+    bestScoreDisplay.textContent =
+      String(bestScore);
+  }
 
 
   /*
-    Show modal.
+    Show game over modal.
   */
 
-  gameOverModal.classList.remove(
-    "hidden"
-  );
+  showGameOverOverlay();
 }
 
 
@@ -575,64 +943,126 @@ function endGame() {
 ========================================================= */
 
 function flap() {
+
+  /*
+    Start game if not started.
+  */
+
   if (!gameStarted) {
+
     startGame();
+
+    bird.flap();
 
     return;
   }
+
+
+  /*
+    Don't flap after game over.
+  */
 
   if (gameOver) {
     return;
   }
+
+
+  /*
+    Normal flap.
+  */
 
   bird.flap();
 }
 
 
 /* =========================================================
-   CANVAS CLICK / TOUCH
+   BUTTON HANDLER
 ========================================================= */
 
-canvas.addEventListener(
-  "pointerdown",
-  function (event) {
-    /*
-      Prevent accidental scrolling/selection.
-    */
+function handleButtonPress(
+  button,
+  action
+) {
 
-    event.preventDefault();
-
-    flap();
+  if (!button) {
+    return;
   }
-);
 
 
-/* =========================================================
-   MOBILE BUTTON
-========================================================= */
+  /*
+    Mobile / touch / pointer.
+  */
 
-flapButton.addEventListener(
-  "pointerdown",
-  function (event) {
-    event.preventDefault();
+  button.addEventListener(
+    "pointerdown",
+    function (event) {
 
-    flap();
-  }
-);
+      event.preventDefault();
+
+      event.stopPropagation();
+
+
+      lastButtonTouchTime =
+        Date.now();
+
+
+      action();
+
+    },
+    {
+      passive: false,
+    }
+  );
+
+
+  /*
+    Desktop / keyboard fallback.
+  */
+
+  button.addEventListener(
+    "click",
+    function (event) {
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+
+      const timeSincePointer =
+        Date.now() -
+        lastButtonTouchTime;
+
+
+      /*
+        Prevent duplicate execution.
+      */
+
+      if (
+        timeSincePointer <
+        500
+      ) {
+        return;
+      }
+
+
+      action();
+    }
+  );
+}
 
 
 /* =========================================================
    START BUTTON
 ========================================================= */
 
-startButton.addEventListener(
-  "click",
+handleButtonPress(
+  startButton,
   function () {
+
     startGame();
 
     /*
-      Immediately flap so the player
-      sees movement.
+      Give the bird its first flap.
     */
 
     bird.flap();
@@ -641,13 +1071,30 @@ startButton.addEventListener(
 
 
 /* =========================================================
-   RETRY BUTTON
+   PLAY AGAIN BUTTON
 ========================================================= */
 
-retryButton.addEventListener(
-  "click",
+handleButtonPress(
+  retryButton,
   function () {
+
+    /*
+      Completely reset previous game.
+    */
+
+    resetGameState();
+
+
+    /*
+      Start fresh game.
+    */
+
     startGame();
+
+
+    /*
+      Immediately fly.
+    */
 
     bird.flap();
   }
@@ -658,37 +1105,83 @@ retryButton.addEventListener(
    CLOSE BUTTON
 ========================================================= */
 
-closeButton.addEventListener(
-  "click",
+handleButtonPress(
+  closeButton,
   function () {
-    gameOverModal.classList.add(
-      "hidden"
-    );
 
-    startOverlay.classList.remove(
-      "hidden"
-    );
+    /*
+      Stop and reset.
+    */
 
-    gameStarted = false;
+    resetGameState();
+
+
+    /*
+      Return to ready screen.
+    */
+
+    showStartOverlay();
   }
 );
 
 
 /* =========================================================
-   KEYBOARD CONTROLS
+   CANVAS POINTER
+========================================================= */
+
+canvas.addEventListener(
+  "pointerdown",
+  function (event) {
+
+    event.preventDefault();
+
+
+    /*
+      Ignore canvas when game over.
+    */
+
+    if (
+      !gameRunning ||
+      gameOver
+    ) {
+      return;
+    }
+
+
+    bird.flap();
+
+  },
+  {
+    passive: false,
+  }
+);
+
+
+/* =========================================================
+   MOBILE TAP TO FLY
+========================================================= */
+
+handleButtonPress(
+  flapButton,
+  function () {
+    flap();
+  }
+);
+
+
+/* =========================================================
+   KEYBOARD
 ========================================================= */
 
 document.addEventListener(
   "keydown",
   function (event) {
-    /*
-      Space
-    */
 
     if (
       event.code === "Space" ||
       event.code === "ArrowUp"
     ) {
+
       event.preventDefault();
 
       flap();
@@ -698,13 +1191,15 @@ document.addEventListener(
 
 
 /* =========================================================
-   PREVENT DOUBLE-TAP ZOOM ON GAME
+   PREVENT TOUCH SCROLLING
 ========================================================= */
 
 canvas.addEventListener(
   "touchstart",
   function (event) {
+
     event.preventDefault();
+
   },
   {
     passive: false,
@@ -713,18 +1208,40 @@ canvas.addEventListener(
 
 
 /* =========================================================
-   INITIAL UI
+   PREVENT DOUBLE TAP ZOOM
 ========================================================= */
 
-bestScoreDisplay.textContent =
-  bestScore;
+canvas.addEventListener(
+  "dblclick",
+  function (event) {
 
-scoreDisplay.textContent = "0";
+    event.preventDefault();
+
+  }
+);
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+if (bestScoreDisplay) {
+
+  bestScoreDisplay.textContent =
+    String(bestScore);
+}
+
+if (scoreDisplay) {
+
+  scoreDisplay.textContent =
+    "0";
+}
 
 
 /*
-  The game intentionally does NOT start
-  automatically anymore.
-
-  The player gets a clean Start Game screen.
+  Start with Ready screen.
 */
+
+resetGameState();
+
+showStartOverlay();
