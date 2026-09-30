@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <meta
+      name="description"
+      content="Play Sammy's Flying Bird game. Test your skills and see how high you can score."
+    />
+
+    <meta name="theme-color" content="#071b2f" />
+
+    <title>Sammy's Flying Bird</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <main class="page">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          S.C.S.L GAME STUDIO
+        </div>
+
+        <h1>Sammy's Flying Bird</h1>
+
+        <p class="hero-text">
+          Fly through the pipes, avoid every obstacle, and see how high you can
+          score.
+        </p>
+
+        <div class="game-info">
+          <div class="info-card">
+            <span class="info-icon">🖱️</span>
+            <div>
+              <strong>Desktop</strong>
+              <span>Click to flap</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon">📱</span>
+            <div>
+              <strong>Mobile</strong>
+              <span>Tap to flap</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon">⌨️</span>
+            <div>
+              <strong>Keyboard</strong>
+              <span>Press Space</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GAME SECTION -->
+      <section class="game-section">
+        <div class="game-card">
+          <div class="game-header">
+            <div>
+              <span class="game-label">ARCADE MODE</span>
+              <h2>Ready to Fly?</h2>
+            </div>
+
+            <div class="live-indicator">
+              <span></span>
+              LIVE
+            </div>
+          </div>
+
+          <div class="game-wrapper">
+            <canvas
+              id="gameCanvas"
+              width="800"
+              height="450"
+              aria-label="Sammy's Flying Bird game"
+            ></canvas>
+
+            <!-- GAME HUD -->
+            <div class="game-hud">
+              <div class="hud-item">
+                <span class="hud-label">SCORE</span>
+                <span id="scoreDisplay" class="hud-score">0</span>
+              </div>
+
+              <div class="hud-item best-score">
+                <span class="hud-label">BEST</span>
+                <span id="bestScoreDisplay" class="hud-score">0</span>
+              </div>
+            </div>
+
+            <!-- START OVERLAY -->
+            <div id="start-overlay" class="game-overlay">
+              <div class="overlay-card">
+                <div class="bird-icon">🐦</div>
+
+                <span class="overlay-small">SAMMY'S FLYING BIRD</span>
+
+                <h3>Ready?</h3>
+
+                <p>
+                  Tap, click, or press <strong>Space</strong> to fly through the
+                  pipes.
+                </p>
+
+                <button id="start-button" class="primary-button">
+                  Start Game
+                </button>
+              </div>
+            </div>
+
+            <!-- GAME OVER OVERLAY -->
+            <div id="game-over-modal" class="game-overlay hidden">
+              <div class="overlay-card game-over-card">
+                <div class="game-over-icon">💥</div>
+
+                <span class="overlay-small">FLIGHT ENDED</span>
+
+                <h3>Game Over!</h3>
+
+                <div class="final-score">
+                  <span>YOUR SCORE</span>
+                  <strong id="finalScore">0</strong>
+                </div>
+
+                <div class="modal-buttons">
+                  <button id="retry-button" class="primary-button">
+                    Play Again
+                  </button>
+
+                  <button id="close-button" class="secondary-button">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOBILE CONTROL -->
+          <div class="mobile-control">
+            <button id="flap-button" aria-label="Make the bird fly">
+              <span>↑</span>
+              TAP TO FLY
+            </button>
+          </div>
+
+          <div class="game-tip">
+            <span>💡</span>
+            <p>
+              Avoid the pipes and keep the bird in the air. Every pipe you pass
+              gives you another point.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUPPORT -->
+      <section class="support-section">
+        <div class="support-card">
+          <div class="support-icon">❤️</div>
+
+          <div class="support-content">
+            <span class="section-label">SUPPORT THE PROJECT</span>
+
+            <h2>Play for free. Help us build more games.</h2>
+
+            <p>
+              If you enjoy the game and would like to support future projects,
+              we'd love to hear from you.
+            </p>
+
+            <a
+              href="mailto:samexblogex08@yahoo.com?subject=Flying Bird Game - Feedback / Donation"
+              class="support-button"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="audio-card">
+          <div class="audio-heading">
+            <span class="music-icon">🎵</span>
+
+            <div>
+              <strong>Game Music</strong>
+              <span>Optional background music</span>
+            </div>
+          </div>
+
+          <audio id="flapSound" controls preload="metadata">
+            <source src="sound/1Dido - Blackbird.mp3" type="audio/mpeg" />
+
+            Your browser does not support audio playback.
+          </audio>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <p class="built">Game built by <strong>S.C.S.L</strong> · 2026</p>
+
+        <p class="dedication">Dedicated to God and my love, May ❤️</p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
